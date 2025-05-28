@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Entity// Indica que essa classe é uma entidade JPA, faz com que seja mapeada para uma tabela do banco de dados
 @Data// Gera métodos Getters, setters, toString(), equals, hashCode e outros utilitários automaticamente através do lombok
 @AllArgsConstructor// Cria um construtor com todos os atributos da classe

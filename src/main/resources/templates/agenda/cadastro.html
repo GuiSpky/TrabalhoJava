@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"></head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+
+<h2>Agendar Consulta</h2>
+<form method="post" th:action="@{/agenda}" th:object="${agendamento}">
+    <input type="hidden" th:field="*{id}" />
+    <div class="mb-3">
+        <label>Data e Hora:</label>
+        <input type="datetime-local" class="form-control" th:field="*{dataHora}" />
+    </div>
+    <div class="mb-3">
+        <label>Médico:</label>
+        <select class="form-control" th:field="*{medico}">
+            <option th:each="m : ${medicos}" th:value="${m.id}" th:text="${m.nome}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Paciente:</label>
+        <select class="form-control" th:field="*{paciente}">
+            <option th:each="p : ${pacientes}" th:value="${p.id}" th:text="${p.nome}"></option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Agendar</button>
+    <a href="/" class="btn btn-secondary">Voltar</a>
+</form>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

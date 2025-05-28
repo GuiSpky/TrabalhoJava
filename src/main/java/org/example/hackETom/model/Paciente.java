@@ -21,7 +21,7 @@ public class Paciente {
     private Long id;
 
     private String nome;
-    private Integer cpf;
-    private Date nascimento;
+    private String cpf;
+    private String nascimento;
     private String telefone;
 }

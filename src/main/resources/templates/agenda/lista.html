@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"></head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+
+<h2>Agenda de Consultas</h2>
+<a href="/agenda/novo" class="btn btn-primary mb-3">Novo Agendamento</a>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Data/Hora</th>
+        <th>Médico</th>
+        <th>Paciente</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ag : ${agendamentos}">
+        <td th:text="${#dates.format(ag.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+        <td th:text="${ag.medico.nome}"></td>
+        <td th:text="${ag.paciente.nome}"></td>
+

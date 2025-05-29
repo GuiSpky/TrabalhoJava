@@ -39,17 +39,4 @@ public class TrabalhoJavaApplication {
             pacienteService.salvar(paciete);
         };
     }
-
-//    @Bean
-//    public CommandLineRunner commandLineRunner(MedicoService medicoService) {
-//        return args -> {
-//            var medico = new Medico(
-//                    null,
-//                    "Doctor Who",
-//                    "5646544444",
-//                    "Neurocirurgião"
-//            );
-//            medicoService.salvar(medico);
-//        };
-//    }
 }

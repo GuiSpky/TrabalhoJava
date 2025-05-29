@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -23,7 +24,7 @@ public class TrabalhoJavaApplication {
                     null,
                     "Nome Teste",
                     "11122233345",
-                    "10-04-2001",
+                    LocalDate.of(2001,10,04),
                     "44911112222"
             );
             pacienteService.salvar(paciete);

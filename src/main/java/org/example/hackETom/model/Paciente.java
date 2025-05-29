@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -22,6 +23,6 @@ public class Paciente {
 
     private String nome;
     private String cpf;
-    private String nascimento;
+    private LocalDate nascimento;
     private String telefone;
 }

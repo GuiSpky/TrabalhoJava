@@ -1,6 +1,8 @@
 package org.example.hackETom;
 
+import org.example.hackETom.model.Medico;
 import org.example.hackETom.model.Paciente;
+import org.example.hackETom.service.MedicoService;
 import org.example.hackETom.service.PacienteService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,4 +32,17 @@ public class TrabalhoJavaApplication {
             pacienteService.salvar(paciete);
         };
     }
+
+//    @Bean
+//    public CommandLineRunner commandLineRunner(MedicoService medicoService) {
+//        return args -> {
+//            var medico = new Medico(
+//                    null,
+//                    "Doctor Who",
+//                    "5646544444",
+//                    "Neurocirurgião"
+//            );
+//            medicoService.salvar(medico);
+//        };
+//    }
 }

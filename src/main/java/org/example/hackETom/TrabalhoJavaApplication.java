@@ -20,7 +20,7 @@ public class TrabalhoJavaApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(PacienteService pacienteService) {
+    public CommandLineRunner commandLineRunner(PacienteService pacienteService, MedicoService medicoService) {
         return args -> {
             var paciete = new Paciente(
                     null,
@@ -29,6 +29,13 @@ public class TrabalhoJavaApplication {
                     LocalDate.of(2001,10,04),
                     "44911112222"
             );
+            var medico = new Medico(
+                    null,
+                    "Doctor Who",
+                    "5646544444",
+                    "Neurocirurgião"
+            );
+            medicoService.salvar(medico);
             pacienteService.salvar(paciete);
         };
     }

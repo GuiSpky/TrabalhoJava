@@ -4,28 +4,34 @@
 <body>
 <div th:replace="fragments/nav :: nav"></div>
 
-<h2>Agendar Consulta</h2>
-<form method="post" th:action="@{/agenda}" th:object="${agendamento}">
-    <input type="hidden" th:field="*{id}" />
-    <div class="mb-3">
-        <label>Data e Hora:</label>
-        <input type="datetime-local" class="form-control" th:field="*{dataHora}" />
-    </div>
-    <div class="mb-3">
-        <label>Médico:</label>
-        <select class="form-control" th:field="*{medico}">
-            <option th:each="m : ${medicos}" th:value="${m.id}" th:text="${m.nome}"></option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label>Paciente:</label>
-        <select class="form-control" th:field="*{paciente}">
-            <option th:each="p : ${pacientes}" th:value="${p.id}" th:text="${p.nome}"></option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-success">Agendar</button>
-    <a href="/" class="btn btn-secondary">Voltar</a>
-</form>
+<div class="container mt-4">
+    <h2>Agendar Consulta</h2>
+    <form method="post" th:action="@{/agenda}" th:object="${agendamento}">
+        <input type="hidden" th:field="*{id}" />
+        <div class="mb-3">
+            <label class="form-label">Data e Hora:</label>
+            <input type="datetime-local" class="form-control" th:field="*{dataHora}" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Médico:</label>
+            <select class="form-control" th:field="*{medico}" required>
+                <option value="">Selecione um médico</option>
+                <option th:each="m : ${medicos}" th:value="${m.id}" th:text="${m.nome}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Paciente:</label>
+            <select class="form-control" th:field="*{paciente}" required>
+                <option value="">Selecione um paciente</option>
+                <option th:each="p : ${pacientes}" th:value="${p.id}" th:text="${p.nome}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Agendar</button>
+        <a href="/agenda" class="btn btn-secondary">Cancelar</a>
+    </form>
+    
+    <a href="/" class="btn btn-secondary mt-3">Voltar para Página Inicial</a>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 </body>

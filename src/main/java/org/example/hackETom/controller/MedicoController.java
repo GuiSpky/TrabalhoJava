@@ -1,38 +1,56 @@
 package org.example.hackETom.controller;
 
+import org.example.hackETom.model.Medico;
 import org.example.hackETom.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller// Define que essa classe trata requisições web
-@RequestMapping("medico")// Define o caminho base das rotas
+@Controller
+@RequestMapping("medicos")
 public class MedicoController {
 
-    @Autowired//Injeta automaticamente uma instância de MedicoService
+    @Autowired
     private MedicoService service;
 
-    @GetMapping("listar")// Mapeia a URL "/medico/listar" via GET
+    @GetMapping()
     public String listar(Model model) {
         model.addAttribute("medicos", service.listarTodos());
         return "medico/lista";
-        // Lista todos os médicos
     }
-
-    @GetMapping("editar/{id}")// Mapeia a URL "/medico/editar/{id}"
-    public String alterar(@PathVariable Long id, Model model) {
+    
+    @GetMapping("/novo")
+    public String iniciar(Medico medico, Model model) {
+        model.addAttribute("medico", new Medico());
+        return "medico/cadastro";
+    }
+    
+    @PostMapping()
+    public String salvar(Medico medico, Model model) {
+        try {
+            service.salvar(medico);
+            return "redirect:/medicos";
+        } catch (Exception e) {
+            model.addAttribute(
+                    "erro",
+                    "Ocorreu um erro ao salvar o médico: " + e.getMessage());
+            return "medico/cadastro";
+        }
+    }
+    
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Long id, Model model) {
         model.addAttribute("medico", service.buscarPorId(id));
-        return "medico/formulario";
-        // Retorna a view "medico/formulario.html", preenchida com os dados do médico para edição
+        return "medico/cadastro";
     }
 
-    @GetMapping("remover/{id}")//Mapeia a URL "/medico/remover/{id}"
-    public String remover(@PathVariable Long id, Model model) {
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Long id, Model model) {
         service.deletarPorId(id);
-        return "redirect:/medico/listar";
-        // Após a remoção, redireciona para a lista de médicos
+        return "redirect:/medicos";
     }
 }

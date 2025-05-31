@@ -11,44 +11,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("paciente")
+@RequestMapping("pacientes")
 public class PacienteController {
 
     @Autowired
     private PacienteService service;
 
     @GetMapping()
-    public String iniciar(Paciente paciente, Model model) {
-        return "paciente/formulario";
-    }
-    @PostMapping("salvar")
-    public String salvar(Paciente paciente,
-                         Model model) {
-        try {
-            service.salvar(paciente);
-            return "redirect:/paciente/listar";
-        } catch (Exception e) {
-            model.addAttribute(
-                    "erro",
-                    "Alguma coisa de errada não está certa!"
-                            + e.getMessage());
-            return iniciar(paciente, model);
-        }
-    }
-    @GetMapping("listar")
     public String listar(Model model) {
         model.addAttribute("pacientes", service.listarTodos());
         return "paciente/lista";
     }
-    @GetMapping("editar/{id}")
-    public String alterar(@PathVariable Long id, Model model) {
+    
+    @GetMapping("/novo")
+    public String iniciar(Paciente paciente, Model model) {
+        model.addAttribute("paciente", new Paciente());
+        return "paciente/cadastro";
+    }
+    
+    @PostMapping()
+    public String salvar(Paciente paciente, Model model) {
+        try {
+            service.salvar(paciente);
+            return "redirect:/pacientes";
+        } catch (Exception e) {
+            model.addAttribute(
+                    "erro",
+                    "Ocorreu um erro ao salvar o paciente: " + e.getMessage());
+            return "paciente/cadastro";
+        }
+    }
+    
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Long id, Model model) {
         model.addAttribute("paciente", service.buscarPorId(id));
-        return "paciente/formulario";
+        return "paciente/cadastro";
     }
 
-    @GetMapping("remover/{id}")
-    public String remover(@PathVariable Long id, Model model) {
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Long id, Model model) {
         service.deletarPorId(id);
-        return "redirect:/paciente/listar";
+        return "redirect:/pacientes";
     }
 }

@@ -14,6 +14,7 @@
             <tr>
                 <th>Nome</th>
                 <th>CRM</th>
+                <th>Especialidade</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -21,6 +22,7 @@
             <tr th:each="medico : ${medicos}">
                 <td th:text="${medico.nome}"></td>
                 <td th:text="${medico.crm}"></td>
+                <td th:text="${medico.especialidade}"></td>
                 <td>
                     <a th:href="@{/medicos/editar/{id}(id=${medico.id})}" class="btn btn-sm btn-warning">Editar</a>
                     <a th:href="@{/medicos/excluir/{id}(id=${medico.id})}" class="btn btn-sm btn-danger">Excluir</a>

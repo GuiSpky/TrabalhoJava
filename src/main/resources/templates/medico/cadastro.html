@@ -4,20 +4,24 @@
 <body>
 <div th:replace="fragments/nav :: nav"></div>
 
-<h2>Cadastrar Médico</h2>
-<form method="post" th:action="@{/medicos}" th:object="${medico}">
-    <input type="hidden" th:field="*{id}" />
-    <div class="mb-3">
-        <label>Nome:</label>
-        <input class="form-control" th:field="*{nome}" required />
-    </div>
-    <div class="mb-3">
-        <label>CRM:</label>
-        <input class="form-control" th:field="*{crm}" required />
-    </div>
-    <button type="submit" class="btn btn-success">Salvar</button>
-    <a href="/" class="btn btn-secondary">Voltar</a>
-</form>
+<div class="container mt-4">
+    <h2>Cadastrar Médico</h2>
+    <form method="post" th:action="@{/medicos}" th:object="${medico}">
+        <input type="hidden" th:field="*{id}" />
+        <div class="mb-3">
+            <label class="form-label">Nome:</label>
+            <input class="form-control" th:field="*{nome}" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CRM:</label>
+            <input class="form-control" th:field="*{crm}" required />
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a href="/medicos" class="btn btn-secondary">Cancelar</a>
+    </form>
+    
+    <a href="/" class="btn btn-secondary mt-3">Voltar para Página Inicial</a>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 </body>

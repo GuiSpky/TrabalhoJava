@@ -1,31 +1,76 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header"></head>
 <body>
 <div th:replace="fragments/nav :: nav"></div>
 
-<div class="container mt-5">
-    <h2 class="mb-4">Sobre Nós</h2>
-    <p>Somos uma clínica médica dedicada a oferecer o melhor atendimento aos nossos pacientes,
-        com uma equipe de profissionais qualificados e estrutura moderna.</p>
-
-    <p>Nosso sistema foi desenvolvido para facilitar o gerenciamento de pacientes, médicos e agendamentos,
-        garantindo agilidade e organização para a sua clínica.</p>
-
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <h5>Missão</h5>
-            <p>Proporcionar saúde de qualidade com eficiência, ética e humanização.</p>
-        </div>
-        <div class="col-md-6">
-            <h5>Visão</h5>
-            <p>Ser referência em tecnologia aplicada à saúde no país.</p>
+<div class="container mt-4">
+    <h2>Sobre Nós</h2>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h3 class="card-title">Equipe Hack e Tom</h3>
+            <h4 class="mt-4">Alunos:</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Breno Labs 14000</li>
+                <li class="list-group-item">Gabriel Henrique Pereira Gomes 13606</li>
+                <li class="list-group-item">Guilherme Fernanda 14539</li>
+                <li class="list-group-item">Maria Eduarda Guirelli 14524</li>
+                <li class="list-group-item">João Flipe Bacarin 13979</li>
+            </ul>
         </div>
     </div>
-
-    <div class="mt-4">
-        <a href="/" class="btn btn-primary">Voltar à Página Inicial</a>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Ferramentas Utilizadas:</h4>
+            <div class="row mt-3">
+                <div class="col-md-3 col-6 text-center mb-3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" height="40" alt="CSS" />
+                    <p class="mt-2">CSS</p>
+                </div>
+                <div class="col-md-3 col-6 text-center mb-3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" height="40" alt="HTML" />
+                    <p class="mt-2">HTML</p>
+                </div>
+                <div class="col-md-3 col-6 text-center mb-3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" height="40" alt="Git" />
+                    <p class="mt-2">Git</p>
+                </div>
+                <div class="col-md-3 col-6 text-center mb-3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg" width="40" height="40" alt="GitHub" />
+                    <p class="mt-2">GitHub</p>
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Clínica Médica</h5>
+            <p class="card-text">
+                Nossa clínica oferece atendimento de qualidade com profissionais especializados em diversas áreas da medicina.
+                Estamos comprometidos em proporcionar o melhor atendimento e cuidado para nossos pacientes.
+            </p>
+            <p class="card-text">
+                Contamos com uma equipe de médicos qualificados e uma infraestrutura moderna para garantir o conforto e bem-estar de todos.
+            </p>
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Nossos Serviços</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Consultas médicas em diversas especialidades</li>
+                <li class="list-group-item">Exames laboratoriais</li>
+                <li class="list-group-item">Atendimento de emergência</li>
+                <li class="list-group-item">Acompanhamento de tratamentos</li>
+            </ul>
+        </div>
+    </div>
+    
+    <a href="/" class="btn btn-secondary mt-3 mb-4">Voltar para Página Inicial</a>
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>

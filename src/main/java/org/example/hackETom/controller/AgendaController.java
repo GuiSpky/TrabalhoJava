@@ -15,16 +15,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("agenda")
 public class AgendaController {
 
     @Autowired
     private AgendaService service;
-    
+
     @Autowired
     private MedicoService medicoService;
-    
+
     @Autowired
     private PacienteService pacienteService;
 
@@ -33,7 +35,7 @@ public class AgendaController {
         model.addAttribute("agendamentos", service.listarTodos());
         return "agenda/lista";
     }
-    
+
     @GetMapping("/novo")
     public String iniciar(Model model) {
         model.addAttribute("agendamento", new Agenda());
@@ -41,20 +43,30 @@ public class AgendaController {
         model.addAttribute("pacientes", pacienteService.listarTodos());
         return "agenda/cadastro";
     }
-    
-    @PostMapping()
-    public String salvar(@ModelAttribute("agendamento") Agenda agenda, Model model) {
-        try {
-            service.salvar(agenda);
-            return "redirect:/agenda";
-        } catch (Exception e) {
-            model.addAttribute("erro", "Ocorreu um erro ao salvar o agendamento: " + e.getMessage());
+
+@PostMapping()
+public String salvar(@ModelAttribute("agendamento") Agenda agenda, Model model) {
+    try {
+        if (agenda.getDataHora().isBefore(LocalDateTime.now())) {
+            model.addAttribute("erro", "A data do agendamento não pode ser anterior ao momento atual.");
             model.addAttribute("medicos", medicoService.listarTodos());
             model.addAttribute("pacientes", pacienteService.listarTodos());
             return "agenda/cadastro";
         }
+
+        service.salvar(agenda);
+        return "redirect:/agenda";
+
+    } catch (Exception e) {
+        model.addAttribute("erro", "Ocorreu um erro ao salvar o agendamento: " + e.getMessage());
+        model.addAttribute("medicos", medicoService.listarTodos());
+        model.addAttribute("pacientes", pacienteService.listarTodos());
+        return "agenda/cadastro";
     }
-    
+}
+
+
+
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
         model.addAttribute("agendamento", service.buscarPorId(id));

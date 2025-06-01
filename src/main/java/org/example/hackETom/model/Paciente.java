@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 import java.time.LocalDate;
 
@@ -22,6 +24,9 @@ public class Paciente {
 
     private String nome;
     private String cpf;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate nascimento;
+
     private String telefone;
 }

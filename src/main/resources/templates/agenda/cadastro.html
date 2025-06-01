@@ -6,6 +6,7 @@
 
 <div class="container mt-4">
     <h2>Agendar Consulta</h2>
+    <div th:if="${erro}" class="alert alert-danger mt-3" th:text="${erro}"></div>
     <form method="post" th:action="@{/agenda}" th:object="${agendamento}">
         <input type="hidden" th:field="*{id}" />
         <div class="mb-3">
